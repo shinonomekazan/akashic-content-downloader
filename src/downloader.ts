@@ -44,7 +44,7 @@ class ParallelDownloader {
 export async function downloadByGameJson(gameJsonURL: string, gameJson: GameJson, outputPath: string) {
 	const fileBaseDir = await path.join(outputPath, "files");
 	try {
-		const stat = await fs.stat(outputPath);
+		await fs.stat(outputPath);
 		throw new Error(`${outputPath} はすでに存在しています`);
 	} catch (e) {
 		if ((e as NodeJS.ErrnoException).code !== "ENOENT") {
