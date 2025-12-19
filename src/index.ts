@@ -1,47 +1,28 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
+import { downloadContent } from "./downloader";
 
-/**
- * CLI アプリケーションのメインエントリーポイント
- */
 function main(): void {
 	const program = new Command();
 
 	program
-		.name("akashic-downloader")
+		.name("akashic-content-downloader")
 		.description("Akashic Content Downloader - A CLI tool for downloading Akashic content")
 		.version("0.1.0");
 
-	// 例: download コマンド
 	program
 		.command("download")
-		.description("Download content from specified URL")
-		.argument("<url>", "URL to download content from")
-		.option("-o, --output <path>", "Output directory path", "./downloads")
-		.action((url: string, options: { output: string }) => {
-			console.log(`Downloading content from: ${url}`);
-			console.log(`Output directory: ${options.output}`);
-			// ここに実際のダウンロード処理を実装
-		});
-
-	// 例: list コマンド
-	program
-		.command("list")
-		.description("List available content")
-		.option("-f, --filter <pattern>", "Filter pattern")
-		.action((options: { filter?: string }) => {
-			console.log("Listing available content...");
-			if (options.filter) {
-				console.log(`Filter: ${options.filter}`);
-			}
-			// ここに実際のリスト表示処理を実装
+		.description("Akashic Contentをダウンロードします")
+		.argument("<url>", "game.jsonまたはcontent.jsonのURL")
+		.option("-o, --output <path>", "出力先ファイルパス", "./content")
+		.action(async (url: string, options: { output: string }) => {
+			await downloadContent(url, options.output);
 		});
 
 	// 引数をパース
 	program.parse(process.argv);
 
-	// コマンドが指定されていない場合はヘルプを表示
 	if (!process.argv.slice(2).length) {
 		program.outputHelp();
 	}
