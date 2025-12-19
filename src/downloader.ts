@@ -71,12 +71,6 @@ export async function downloadByGameJson(gameJsonURL: string, gameJson: GameJson
 	return fs.writeFile(path.join(outputPath, "game.json"), JSON.stringify(gameJson, null, "\t"), "utf8");
 }
 
-/**
- * 指定されたURLからコンテンツをダウンロードする
- * @param url - ダウンロード元のURL
- * @param outputPath - 出力先のパス
- * @returns ダウンロードが成功した場合はtrue、失敗した場合はfalse
- */
 export async function downloadContent(url: string, outputPath: string) {
 	const firstContent = await download(url);
 	const firstJsonOrGameJson = JSON.parse(firstContent.toString("utf8")) as ContentJson | GameJson;
@@ -87,28 +81,4 @@ export async function downloadContent(url: string, outputPath: string) {
 		return downloadByGameJson(contentJson.content_url, gameJson, outputPath);
 	}
 	return downloadByGameJson(url, firstJsonOrGameJson as GameJson, outputPath);
-}
-
-/**
- * URLが有効かどうかを検証する
- * @param url - 検証するURL
- * @returns URLが有効な場合はtrue、無効な場合はfalse
- */
-export function validateUrl(url: string): boolean {
-	try {
-		new URL(url);
-		return true;
-	} catch {
-		return false;
-	}
-}
-
-/**
- * ファイルパスが有効かどうかを検証する
- * @param path - 検証するパス
- * @returns パスが有効な場合はtrue、無効な場合はfalse
- */
-export function validatePath(path: string): boolean {
-	// 基本的な検証: 空でないこと
-	return path.trim().length > 0;
 }
