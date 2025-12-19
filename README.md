@@ -18,6 +18,7 @@ npm run dev {content.jsonまたはgame.jsonのURL}
 ## 他にやるべき事
 
 - [ ] npm publishして、npm iで使えるようにしておく
+- [ ] 一発ZIP圧縮くらいサポートしておく？
 
 ## 他に考えるべき事
 
