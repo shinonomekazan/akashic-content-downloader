@@ -1,0 +1,52 @@
+{
+	"name": "akashic-content-downloader",
+	"version": "0.1.0",
+	"description": "Akashic Content Downloader - A CLI tool built with Commander.js",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"bin": {
+		"akashic-downloader": "./dist/index.js"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"scripts": {
+		"build": "tsc",
+		"dev": "ts-node src/index.ts",
+		"start": "node dist/index.js",
+		"test": "npm run lint && jest",
+		"test:watch": "jest --watch",
+		"test:coverage": "jest --coverage",
+		"lint": "eslint . --ext .ts",
+		"lint:fix": "eslint . --ext .ts --fix",
+		"format": "prettier --write \"**/*.{ts,js,json,md,yml,yaml}\"",
+		"format:check": "prettier --check \"**/*.{ts,js,json,md,yml,yaml}\"",
+		"clean": "rm -rf dist",
+		"prebuild": "npm run clean"
+	},
+	"keywords": [
+		"typescript",
+		"cli",
+		"commander",
+		"akashic"
+	],
+	"author": "",
+	"license": "MIT",
+	"dependencies": {
+		"commander": "^12.0.0"
+	},
+	"devDependencies": {
+		"@types/jest": "^30.0.0",
+		"@types/node": "^24.10.1",
+		"@typescript-eslint/eslint-plugin": "^8.48.0",
+		"@typescript-eslint/parser": "^8.48.0",
+		"eslint": "^9.39.1",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-prettier": "^5.5.4",
+		"jest": "^30.2.0",
+		"prettier": "^3.6.2",
+		"ts-jest": "^29.4.5",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.9.3"
+	}
+}
