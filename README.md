@@ -25,4 +25,4 @@ npm run dev {content.jsonまたはgame.jsonのURL}
 
 ## License
 
-MIT
+[MIT](./LICENSE)
